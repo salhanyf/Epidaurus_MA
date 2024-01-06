@@ -112,4 +112,5 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
     //TODO: Add confirmation logic for password
     //TODO: Add restriction logic for name
     //TODO: Add restriction logic for password
+    //placeholder
 }
