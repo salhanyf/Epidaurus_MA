@@ -36,7 +36,7 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         ){
             install(Auth)
         }
-        val createAcctBtn = findViewById<Button>(R.id.createAccountButton)
+        val createAcctBtn = findViewById<Button>(R.id.SignInButton)
         createAcctBtn.setOnClickListener{
             val map = getAllEditTextValues()
             launch {

@@ -151,7 +151,7 @@
             android:padding="10dp" />
 
         <Button
-            android:id="@+id/createAccountButton"
+            android:id="@+id/SignInButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
