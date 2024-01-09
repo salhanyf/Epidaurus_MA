@@ -37,14 +37,18 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
         val signInBtn = findViewById<Button>(R.id.SignInButton)
         signInBtn.setOnClickListener{
-            //TODO: Add logic to prevent user from signing in without inputting anything in the EditTexts
             val emailET = findViewById<EditText>(R.id.emailSignIn)
             val pswET = findViewById<EditText>(R.id.passwordSignIn)
             val emailStr = emailET.text.toString()
             val pswStr = pswET.text.toString()
-            launch{
-                signIn(supabase,emailStr,pswStr)
+            if(emailStr == "" || pswStr == ""||emailStr == null || pswStr == null){
+               Toast.makeText(this, "Credentials are empty", Toast.LENGTH_SHORT).show()
+            }else{
+                launch{
+                    signIn(supabase,emailStr,pswStr)
+                }
             }
+
         }
     }
 

@@ -39,16 +39,25 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         val createAcctBtn = findViewById<Button>(R.id.SignInButton)
         createAcctBtn.setOnClickListener{
             val map = getAllEditTextValues()
-            launch {
-                signUp(supabase,
-                    map["name"],
-                    map["email"],
-                    map["password"],
-                    map["departmentId"],
-                    map["roleId"],
-                    map["floorId"]
-                )
+            if (map["name"] == "" ||map["email"] == "" ||map["password"] == "" || map["passwordConfirm"] == "" ||map["departmentId"] == "" ||map["roleId"] == "" ||map["floorId"] == ""){
+                Toast.makeText(this, "All fields must be filled to register", Toast.LENGTH_SHORT).show()
+            }else if(map["password"] != map["passwordConfirm"]) {
+                Toast.makeText(this, "You did not enter the same password", Toast.LENGTH_SHORT).show()
+            }else if ((map["password"]?.length ?: 0) < 6){
+                Toast.makeText(this, "Passwords need to be 6 characters minimum", Toast.LENGTH_SHORT).show()
+            }else{
+                launch {
+                    signUp(supabase,
+                        map["name"],
+                        map["email"],
+                        map["password"],
+                        map["departmentId"],
+                        map["roleId"],
+                        map["floorId"]
+                    )
+                }
             }
+
         }
     }
 
@@ -109,8 +118,4 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
 
     //TODO: Create navigation link to SignUpActivity with "SIGN IN" TextView
     //TODO: Replace Date of Birth EditText with a DatePicker (or remove it altogether, TO BE DISCUSSED)
-    //TODO: Add confirmation logic for password
-    //TODO: Add restriction logic for name
-    //TODO: Add restriction logic for password
-    //placeholder
 }

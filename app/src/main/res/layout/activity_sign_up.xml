@@ -43,6 +43,7 @@
             android:drawablePadding="10dp"
             android:hint="@string/username"
             android:inputType="text"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:padding="10dp" />
 
         <EditText
@@ -58,6 +59,7 @@
             android:drawablePadding="10dp"
             android:hint="@string/date_of_birth"
             android:inputType="date"
+            android:digits="123456789"
             android:padding="10dp" />
 
         <EditText

@@ -7,8 +7,8 @@
     <string name="sign_in">Sign In</string>
     <string name="username">Full Name</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password (6 char. min.)</string>
+    <string name="confirm_password">Confirm Password (6 char. min.)</string>
     <string name="department_id">Department ID</string>
     <string name="floor_id">Floor ID</string>
     <string name="role_id">Role ID</string>
