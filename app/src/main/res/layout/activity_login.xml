@@ -24,55 +24,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="monospace"
-            android:text="@string/sign_in"
-            android:textAlignment="center"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="@string/sign_in" />
 
         <EditText
             android:id="@+id/emailSignIn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/baseline_alternate_email_24"
             android:drawablePadding="10dp"
             android:hint="@string/email"
+            android:autofillHints=""
             android:inputType="textEmailAddress"
-            android:padding="10dp" />
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/passwordSignIn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/login_activity_lock_open"
             android:drawablePadding="10dp"
             android:hint="@string/password_sign_in"
+            android:autofillHints=""
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:textColorHint="@color/black" />
 
         <Button
             android:id="@+id/createAccountButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_gravity="center"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="50dp"
+            android:layout_gravity="center"
             android:backgroundTint="@color/button_background_color"
-            android:text="@string/sign_in"
+            android:textSize="14sp"
             android:textAlignment="gravity"
             android:textColor="@color/button_text_color"
-            android:textSize="14sp"
+            android:text="@string/sign_in"
             app:cornerRadius="20dp" />
 
         <LinearLayout
@@ -84,19 +88,20 @@
                 android:id="@+id/SignUpText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:fontFamily="monospace"
                 android:textStyle="bold"
-                android:text="@string/first_time"
-                android:textSize="14sp" />
+                android:text="@string/first_time" />
             <Button
                 android:id="@+id/signUpRedirect"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:textStyle="italic"
-                android:text="@string/sign_up"
                 android:textColor="@color/button_background_color"
-                android:textSize="14sp" />
+                android:text="@string/sign_up" />
+
         </LinearLayout>
 
     </LinearLayout>

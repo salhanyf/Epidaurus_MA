@@ -38,13 +38,15 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:drawableStart="@drawable/sharp_account_circle_24"
             android:drawablePadding="10dp"
             android:hint="@string/username"
-            android:inputType="text"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:padding="10dp" />
+            android:autofillHints=""
+            android:textColorHint="@color/black"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/emailSignup"
@@ -54,12 +56,14 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/baseline_alternate_email_24"
             android:drawablePadding="10dp"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp" />
+            android:autofillHints=""
+            android:textColorHint="@color/black"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordSignup"
@@ -69,12 +73,14 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/login_activity_lock_open"
             android:drawablePadding="10dp"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="10dp" />
+            android:autofillHints=""
+            android:textColorHint="@color/black"
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/passwordConfirmSignup"
@@ -84,14 +90,16 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/login_activity_lock_open"
             android:drawablePadding="10dp"
             android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            android:padding="10dp" />
+            android:autofillHints=""
+            android:textColorHint="@color/black"
+            android:inputType="textPassword" />
 
-        <EditText
+        <Spinner
             android:id="@+id/departmentIdSignup"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -99,14 +107,16 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
+            android:popupBackground="@drawable/card_view"
             android:drawableStart="@drawable/baseline_arrow_forward_24"
             android:drawablePadding="10dp"
             android:hint="@string/department_id"
-            android:inputType="number"
-            android:padding="10dp" />
+            android:textColorHint="@color/black"
+            android:spinnerMode="dropdown" />
 
-        <EditText
+        <Spinner
             android:id="@+id/floorIdSignup"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -114,12 +124,14 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:padding="10dp"
             android:background="@drawable/card_view_boarder"
+            android:popupBackground="@drawable/card_view"
             android:drawableStart="@drawable/baseline_arrow_forward_24"
             android:drawablePadding="10dp"
             android:hint="@string/floor_id"
-            android:inputType="number"
-            android:padding="10dp" />
+            android:textColorHint="@color/black"
+            android:spinnerMode="dropdown" />
 
         <Button
             android:id="@+id/createAccountButton"
@@ -132,7 +144,7 @@
             android:backgroundTint="@color/button_background_color"
             android:text="@string/create_an_account"
             android:textAlignment="gravity"
-            android:textColor="@color/button_text_color"
+            android:textColor="@color/white"
             android:textSize="14sp"
             app:cornerRadius="20dp" />
 
@@ -145,19 +157,19 @@
                 android:id="@+id/LoginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="@string/already_have_an_account"
-                android:textSize="14sp" />
+                android:fontFamily="monospace"
+                android:text="@string/already_have_an_account" />
             <Button
                 android:id="@+id/loginRedirect"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:textStyle="italic"
-                android:text="@string/sign_in"
                 android:textColor="@color/button_background_color"
-                android:textSize="14sp" />
+                android:text="@string/sign_in" />
 
         </LinearLayout>
 

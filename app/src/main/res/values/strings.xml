@@ -16,10 +16,11 @@
     <string name="create_an_account">CREATE AN ACCOUNT</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="first_time">First time?</string>
+    <string name="select_department">Select department</string>
+    <string name="select_floor">Select floor</string>
 
     <!-- Departments for Sign Up activity -->
     <string-array name="department_array">
-        <item>Select department</item>
         <item>Cardiology</item>
         <item>Pulmonology</item>
         <item>Gastroenterology</item>
@@ -28,7 +29,6 @@
 
     <!-- Floors for Sign Up activity -->
     <string-array name="floor_array">
-        <item>Select floor</item>
         <item>Floor 1</item>
         <item>Floor 2</item>
         <item>Floor 3</item>
