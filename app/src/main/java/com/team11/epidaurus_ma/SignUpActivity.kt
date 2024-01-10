@@ -1,5 +1,6 @@
 package com.team11.epidaurus_ma
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,13 +31,21 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        // Login redirect btn
+        val signInBtn = findViewById<Button>(R.id.loginRedirect)
+        signInBtn.setOnClickListener{
+            val signInIntent = Intent (this, LoginActivity::class.java)
+            startActivity(signInIntent)
+        }
+
         val supabase = createSupabaseClient(
             "https://faafgdjvgcpjbchmbmhg.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU"
         ){
             install(Auth)
         }
-        val createAcctBtn = findViewById<Button>(R.id.SignInButton)
+        val createAcctBtn = findViewById<Button>(R.id.createAccountButton)
         createAcctBtn.setOnClickListener{
             val map = getAllEditTextValues()
             if (map["name"] == "" ||map["email"] == "" ||map["password"] == "" || map["passwordConfirm"] == "" ||map["departmentId"] == "" ||map["roleId"] == "" ||map["floorId"] == ""){
@@ -63,29 +72,23 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
 
     fun getAllEditTextValues(): Map<String, String> {
         val nameET = findViewById<EditText>(R.id.nameSignup)
-        val dobET = findViewById<EditText>(R.id.DateOfBirthSignup)
         val emailET = findViewById<EditText>(R.id.emailSignup)
         val pswET = findViewById<EditText>(R.id.passwordSignup)
         val pswConfET = findViewById<EditText>(R.id.passwordConfirmSignup)
         val deptIdET = findViewById<EditText>(R.id.departmentIdSignup)
-        val roleIdET = findViewById<EditText>(R.id.RoleIdSignup)
         val floorIdET = findViewById<EditText>(R.id.floorIdSignup)
 
         val editTextMap = mutableMapOf<String, String>()
 
         editTextMap["name"] = nameET.text?.toString() ?: ""
-        editTextMap["dateOfBirth"] = dobET.text?.toString() ?: ""
         editTextMap["email"] = emailET.text?.toString() ?: ""
         editTextMap["password"] = pswET.text?.toString() ?: ""
         editTextMap["passwordConfirm"] = pswConfET.text?.toString() ?: ""
         editTextMap["departmentId"] = deptIdET.text?.toString() ?: ""
-        editTextMap["roleId"] = roleIdET.text?.toString() ?: ""
         editTextMap["floorId"] = floorIdET.text?.toString() ?: ""
 
         return editTextMap
     }
-
-
 
     suspend fun signUp(supabase:SupabaseClient, nameStr:String?, emailStr:String?, pswStr:String?, deptId:String?, roleId:String?, floorId:String?){
         val user = supabase.auth.signUpWith(Email){
@@ -116,6 +119,5 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
     val metadata = user?.userMetadata
     */
 
-    //TODO: Create navigation link to SignUpActivity with "SIGN IN" TextView
     //TODO: Replace Date of Birth EditText with a DatePicker (or remove it altogether, TO BE DISCUSSED)
 }
