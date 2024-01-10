@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -31,6 +32,20 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        // Dropdown menu for departments
+        val departments = resources.getStringArray(R.array.department_array).toMutableList()
+        val departmentSpinner: Spinner = findViewById(R.id.departmentIdSignup)
+        departmentSpinner.dropDownVerticalOffset = 130
+        val departmentAdapter = DropdownAdapter(this, R.layout.dropdown_menu, departments, "Select Department")
+        departmentSpinner.adapter = departmentAdapter
+
+        // Dropdown menu for departments
+        val floors = resources.getStringArray(R.array.floor_array).toMutableList()
+        val floorSpinner: Spinner = findViewById(R.id.floorIdSignup)
+        floorSpinner.dropDownVerticalOffset = 130
+        val floorAdapter = DropdownAdapter(this, R.layout.dropdown_menu, floors, "Select Floor")
+        floorSpinner.adapter = floorAdapter
 
         // Login redirect btn
         val signInBtn = findViewById<Button>(R.id.loginRedirect)
@@ -70,13 +85,13 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         }
     }
 
-    fun getAllEditTextValues(): Map<String, String> {
+    private fun getAllEditTextValues(): Map<String, String> {
         val nameET = findViewById<EditText>(R.id.nameSignup)
         val emailET = findViewById<EditText>(R.id.emailSignup)
         val pswET = findViewById<EditText>(R.id.passwordSignup)
         val pswConfET = findViewById<EditText>(R.id.passwordConfirmSignup)
-        val deptIdET = findViewById<EditText>(R.id.departmentIdSignup)
-        val floorIdET = findViewById<EditText>(R.id.floorIdSignup)
+        //val deptIdET = findViewById<EditText>(R.id.departmentIdSignup)
+        //val floorIdET = findViewById<EditText>(R.id.floorIdSignup)
 
         val editTextMap = mutableMapOf<String, String>()
 
@@ -84,13 +99,13 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         editTextMap["email"] = emailET.text?.toString() ?: ""
         editTextMap["password"] = pswET.text?.toString() ?: ""
         editTextMap["passwordConfirm"] = pswConfET.text?.toString() ?: ""
-        editTextMap["departmentId"] = deptIdET.text?.toString() ?: ""
-        editTextMap["floorId"] = floorIdET.text?.toString() ?: ""
+        //editTextMap["departmentId"] = deptIdET.text?.toString() ?: ""
+        //editTextMap["floorId"] = floorIdET.text?.toString() ?: ""
 
         return editTextMap
     }
 
-    suspend fun signUp(supabase:SupabaseClient, nameStr:String?, emailStr:String?, pswStr:String?, deptId:String?, roleId:String?, floorId:String?){
+    private suspend fun signUp(supabase:SupabaseClient, nameStr:String?, emailStr:String?, pswStr:String?, deptId:String?, roleId:String?, floorId:String?){
         val user = supabase.auth.signUpWith(Email){
             if (emailStr != null) {
                 email = emailStr
