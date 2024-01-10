@@ -47,22 +47,6 @@
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/DateOfBirthSignup"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/card_view_boarder"
-            android:drawableStart="@drawable/baseline_calendar_month_24"
-            android:drawablePadding="10dp"
-            android:hint="@string/date_of_birth"
-            android:inputType="date"
-            android:digits="123456789"
-            android:padding="10dp" />
-
-        <EditText
             android:id="@+id/emailSignup"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -123,21 +107,6 @@
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/RoleIdSignup"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/card_view_boarder"
-            android:drawableStart="@drawable/baseline_arrow_forward_24"
-            android:drawablePadding="10dp"
-            android:hint="@string/role_id"
-            android:inputType="number"
-            android:padding="10dp" />
-
-        <EditText
             android:id="@+id/floorIdSignup"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -153,7 +122,7 @@
             android:padding="10dp" />
 
         <Button
-            android:id="@+id/SignInButton"
+            android:id="@+id/createAccountButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"

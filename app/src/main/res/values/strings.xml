@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Epidaurus</string>
+    <string name="placeholder">placeholder</string>
 
     <!-- Welcome activity/Sign Up/Sign In activity -->
     <string name="Register">Register</string>
@@ -8,13 +9,29 @@
     <string name="username">Full Name</string>
     <string name="email">Email</string>
     <string name="password">Password (6 char. min.)</string>
-    <string name="confirm_password">Confirm Password (6 char. min.)</string>
+    <string name="password_sign_in">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="department_id">Department ID</string>
     <string name="floor_id">Floor ID</string>
-    <string name="role_id">Role ID</string>
-    <string name="date_of_birth">Date of Birth</string>
     <string name="create_an_account">CREATE AN ACCOUNT</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="first_time">First time?</string>
+
+    <!-- Departments for Sign Up activity -->
+    <string-array name="department_array">
+        <item>Select department</item>
+        <item>Cardiology</item>
+        <item>Pulmonology</item>
+        <item>Gastroenterology</item>
+        <item>Neurology</item>
+    </string-array>
+
+    <!-- Floors for Sign Up activity -->
+    <string-array name="floor_array">
+        <item>Select floor</item>
+        <item>Floor 1</item>
+        <item>Floor 2</item>
+        <item>Floor 3</item>
+    </string-array>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.team11.epidaurus_ma
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -29,13 +30,21 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Sign up redirect btn
+        val signUpBtn = findViewById<Button>(R.id.signUpRedirect)
+        signUpBtn.setOnClickListener{
+            val signUnIntent = Intent (this, SignUpActivity::class.java)
+            startActivity(signUnIntent)
+        }
+
         val supabase = createSupabaseClient(
             "https://faafgdjvgcpjbchmbmhg.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU"
         ){
             install(Auth)
         }
-        val signInBtn = findViewById<Button>(R.id.SignInButton)
+        val signInBtn = findViewById<Button>(R.id.createAccountButton)
         signInBtn.setOnClickListener{
             val emailET = findViewById<EditText>(R.id.emailSignIn)
             val pswET = findViewById<EditText>(R.id.passwordSignIn)
