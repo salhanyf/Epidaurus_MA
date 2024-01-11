@@ -108,9 +108,8 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
                         map["name"],
                         map["email"],
                         map["password"],
-                        map["departmentId"],
-                        map["roleId"],
-                        map["floorId"]
+                        departmentId,
+                        floorId
                     )
                 }
             }
@@ -134,7 +133,7 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         return editTextMap
     }
 
-    private suspend fun signUp(supabase:SupabaseClient, nameStr:String?, emailStr:String?, pswStr:String?, deptId:String?, roleId:String?, floorId:String?){
+    private suspend fun signUp(supabase:SupabaseClient, nameStr:String?, emailStr:String?, pswStr:String?, deptId:String?, floorId:String?){
         val user = supabase.auth.signUpWith(Email){
             if (emailStr != null) {
                 email = emailStr
@@ -145,7 +144,6 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
             data = buildJsonObject {
                 put("name", nameStr)
                 put("Department ID", deptId)
-                put("Role ID", roleId)
                 put("Floor ID",floorId)
             }
         }
