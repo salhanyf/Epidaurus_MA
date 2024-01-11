@@ -3,6 +3,8 @@ package com.team11.epidaurus_ma
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -38,14 +40,45 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         val departmentSpinner: Spinner = findViewById(R.id.departmentIdSignup)
         departmentSpinner.dropDownVerticalOffset = 130
         val departmentAdapter = DropdownAdapter(this, R.layout.dropdown_menu, departments, "Select Department")
+        var departmentId: String = "0"
         departmentSpinner.adapter = departmentAdapter
+        //TODO: @Farah please make it so that when I select an option on the drop down menu, that the option selected e.g. "Cardiology" replaces the Hint Text ("Select a department")
+        departmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(parent?.getItemAtPosition(position).toString() /* <- @Farah, this is how you get the string of the option selected*/){
+                    "Cardiology" -> departmentId = "1"
+                    "Neurology" -> departmentId = "2"
+                    "Gastroenterology" -> departmentId = "3"
+                    "Pulmonology" -> departmentId = "4"
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                departmentId = "0"
+            }
+        }
 
         // Dropdown menu for departments
         val floors = resources.getStringArray(R.array.floor_array).toMutableList()
         val floorSpinner: Spinner = findViewById(R.id.floorIdSignup)
         floorSpinner.dropDownVerticalOffset = 130
         val floorAdapter = DropdownAdapter(this, R.layout.dropdown_menu, floors, "Select Floor")
+        var floorId: String = "0"
         floorSpinner.adapter = floorAdapter
+        //TODO: @Farah please make it so that when I select an option on the drop down menu, that the option selected e.g. "1" replaces the Hint Text ("Select a floor")
+        floorSpinner.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(parent?.getItemAtPosition(position).toString() /* <- @Farah, this is how you get the string of the option selected*/){
+                    "Floor 1" -> floorId = "1"
+                    "Floor 2" -> floorId = "2"
+                    "Floor 3" -> floorId = "3"
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                floorId = "0"
+            }
+        }
 
         // Login redirect btn
         val signInBtn = findViewById<Button>(R.id.loginRedirect)
@@ -63,7 +96,7 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         val createAcctBtn = findViewById<Button>(R.id.createAccountButton)
         createAcctBtn.setOnClickListener{
             val map = getAllEditTextValues()
-            if (map["name"] == "" ||map["email"] == "" ||map["password"] == "" || map["passwordConfirm"] == "" ||map["departmentId"] == "" ||map["roleId"] == "" ||map["floorId"] == ""){
+            if (map["name"] == "" ||map["email"] == "" ||map["password"] == "" || map["passwordConfirm"] == "" || departmentId == "0" ||floorId == "0"){
                 Toast.makeText(this, "All fields must be filled to register", Toast.LENGTH_SHORT).show()
             }else if(map["password"] != map["passwordConfirm"]) {
                 Toast.makeText(this, "You did not enter the same password", Toast.LENGTH_SHORT).show()
@@ -90,8 +123,6 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         val emailET = findViewById<EditText>(R.id.emailSignup)
         val pswET = findViewById<EditText>(R.id.passwordSignup)
         val pswConfET = findViewById<EditText>(R.id.passwordConfirmSignup)
-        //val deptIdET = findViewById<EditText>(R.id.departmentIdSignup)
-        //val floorIdET = findViewById<EditText>(R.id.floorIdSignup)
 
         val editTextMap = mutableMapOf<String, String>()
 
@@ -99,8 +130,6 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         editTextMap["email"] = emailET.text?.toString() ?: ""
         editTextMap["password"] = pswET.text?.toString() ?: ""
         editTextMap["passwordConfirm"] = pswConfET.text?.toString() ?: ""
-        //editTextMap["departmentId"] = deptIdET.text?.toString() ?: ""
-        //editTextMap["floorId"] = floorIdET.text?.toString() ?: ""
 
         return editTextMap
     }
@@ -134,5 +163,4 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
     val metadata = user?.userMetadata
     */
 
-    //TODO: Replace Date of Birth EditText with a DatePicker (or remove it altogether, TO BE DISCUSSED)
 }
