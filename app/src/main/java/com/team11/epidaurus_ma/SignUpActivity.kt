@@ -22,10 +22,11 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.coroutines.CoroutineContext
 
-class SignUpActivity : AppCompatActivity(), CoroutineScope{
+class SignUpActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
+    override val coroutineContext: CoroutineContext get() = Dispatchers.Main + job
+    private var departmentId: String = "0"
+    private var floorId: String = "0"
 
     override fun onDestroy() {
         super.onDestroy()
@@ -36,47 +37,22 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
         setContentView(R.layout.activity_sign_up)
 
         // Dropdown menu for departments
-        val departments = resources.getStringArray(R.array.department_array).toMutableList()
-        val departmentSpinner: Spinner = findViewById(R.id.departmentIdSignup)
-        departmentSpinner.dropDownVerticalOffset = 130
-        val departmentAdapter = DropdownAdapter(this, R.layout.dropdown_menu, departments, "Select Department")
-        var departmentId: String = "0"
-        departmentSpinner.adapter = departmentAdapter
-        //TODO: @Farah please make it so that when I select an option on the drop down menu, that the option selected e.g. "Cardiology" replaces the Hint Text ("Select a department")
-        departmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(parent?.getItemAtPosition(position).toString() /* <- @Farah, this is how you get the string of the option selected*/){
-                    "Cardiology" -> departmentId = "1"
-                    "Neurology" -> departmentId = "2"
-                    "Gastroenterology" -> departmentId = "3"
-                    "Pulmonology" -> departmentId = "4"
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                departmentId = "0"
+        setupSpinner(findViewById(R.id.departmentIdSignup), R.array.department_array, "Select Department") { selected, position ->
+            departmentId = when (selected) {
+                "Cardiology" -> "1"
+                "Neurology" -> "2"
+                "Gastroenterology" -> "3"
+                "Pulmonology" -> "4"
+                else -> "0"
             }
         }
-
         // Dropdown menu for departments
-        val floors = resources.getStringArray(R.array.floor_array).toMutableList()
-        val floorSpinner: Spinner = findViewById(R.id.floorIdSignup)
-        floorSpinner.dropDownVerticalOffset = 130
-        val floorAdapter = DropdownAdapter(this, R.layout.dropdown_menu, floors, "Select Floor")
-        var floorId: String = "0"
-        floorSpinner.adapter = floorAdapter
-        //TODO: @Farah please make it so that when I select an option on the drop down menu, that the option selected e.g. "1" replaces the Hint Text ("Select a floor")
-        floorSpinner.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(parent?.getItemAtPosition(position).toString() /* <- @Farah, this is how you get the string of the option selected*/){
-                    "Floor 1" -> floorId = "1"
-                    "Floor 2" -> floorId = "2"
-                    "Floor 3" -> floorId = "3"
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                floorId = "0"
+        setupSpinner(findViewById(R.id.floorIdSignup), R.array.floor_array, "Select Floor") { selected, position ->
+            floorId = when (selected) {
+                "Floor 1" -> "1"
+                "Floor 2" -> "2"
+                "Floor 3" -> "3"
+                else -> "0"
             }
         }
 
@@ -113,7 +89,25 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
                     )
                 }
             }
+        }
+    }
 
+    private fun setupSpinner(spinner: Spinner, arrayId: Int, hint: String, onSelect: (String, Int) -> Unit) {
+        val items = resources.getStringArray(arrayId).toList()
+        val adapter = DropdownAdapter(this, R.layout.dropdown_menu, items, hint)
+        spinner.adapter = adapter
+        spinner.dropDownVerticalOffset = 130
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selected = parent.getItemAtPosition(position).toString()
+                if (position > 0) {
+                    adapter.setCurrentSelection(selected)
+                }
+                onSelect(selected, position)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                adapter.setCurrentSelection(hint)
+            }
         }
     }
 
@@ -153,12 +147,12 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope{
             Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
         }
     }
-    //IMPORTANT: the user's metadata is not accessible on the Supabase Dashboard, it will be accessible at anytime with Kotlin code when the user signs in successfully in a valid session: https://www.restack.io/docs/supabase-knowledge-supabase-user-metadata
-    /*
-    val user = supabase.auth.retrieveUserForCurrentSession()
-    //Or you can use the user from the current session:
-    val user = supabase.auth.currentUserOrNull()
-    val metadata = user?.userMetadata
-    */
-
 }
+
+/*
+IMPORTANT: the user's metadata is not accessible on the Supabase Dashboard, it will be accessible at anytime with Kotlin code when the user signs in successfully in a valid session: https://www.restack.io/docs/supabase-knowledge-supabase-user-metadata
+val user = supabase.auth.retrieveUserForCurrentSession()
+//Or you can use the user from the current session:
+val user = supabase.auth.currentUserOrNull()
+val metadata = user?.userMetadata
+*/
