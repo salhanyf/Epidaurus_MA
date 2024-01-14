@@ -46,7 +46,7 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope {
                 else -> "0"
             }
         }
-        // Dropdown menu for departments
+        // Dropdown menu for floors
         setupSpinner(findViewById(R.id.floorIdSignup), R.array.floor_array, "Select Floor") { selected, position ->
             floorId = when (selected) {
                 "Floor 1" -> "1"
