@@ -112,7 +112,6 @@
             android:popupBackground="@drawable/card_view"
             android:drawableStart="@drawable/baseline_arrow_forward_24"
             android:drawablePadding="10dp"
-            android:hint="@string/department_id"
             android:textColorHint="@color/black"
             android:spinnerMode="dropdown" />
 
@@ -129,7 +128,6 @@
             android:popupBackground="@drawable/card_view"
             android:drawableStart="@drawable/baseline_arrow_forward_24"
             android:drawablePadding="10dp"
-            android:hint="@string/floor_id"
             android:textColorHint="@color/black"
             android:spinnerMode="dropdown" />
 

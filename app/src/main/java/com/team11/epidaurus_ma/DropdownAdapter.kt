@@ -10,18 +10,14 @@ import android.widget.TextView
 class DropdownAdapter(context: Context,
                       resource: Int,
                       private val items: List<String>,
-                      private val hint: String) : ArrayAdapter<String>(context, R.layout.dropdown_item, items) {
+                      private val hint: String) : ArrayAdapter<String>(context, resource, items) {
+
+    private var currentSelection: String? = hint
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.dropdown_menu, parent, false)
         val textView = view.findViewById<TextView>(R.id.repeatedItem)
-
-        if (position == 0) {
-            textView.text = hint
-        } else {
-            textView.text = items[position]
-        }
-
+        textView.text = currentSelection ?: hint
         return view
     }
 
@@ -30,5 +26,10 @@ class DropdownAdapter(context: Context,
         val textView = view.findViewById<TextView>(R.id.customSpinnerItem)
         textView.text = items[position]
         return view
+    }
+
+    fun setCurrentSelection(selection: String) {
+        currentSelection = selection
+        notifyDataSetChanged()
     }
 }
