@@ -36,4 +36,16 @@
         <item>Floor 3</item>
     </string-array>
 
+    <!-- Menu bar options -->
+    <string name="settings">Settings</string>
+    <string name="sign_out">Sign out</string>
+    <string name="profile">Profile</string>
+    <string name="arrow_down">arrow down</string>
+
+    <!-- Dashboard activity -->
+    <string name="dashboard">Dashboard</string>
+    <string name="patients">My Patients</string>
+    <string name="notes">Notes</string>
+    <string name="floor_view">Floor View</string>
+
 </resources>

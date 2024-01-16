@@ -9,7 +9,8 @@
     <color name="medium_green">#46915F</color>
     <color name="dark_green">#3D6C42</color>
 
-    <color name="button_background_color">@color/medium_green</color>
+    <color name="button_background_color">@color/dark_green</color>
+    <color name="button_background_on_dark">@color/medium_green</color>
     <color name="button_text_color">@color/white</color>
 
     <color name="purple_200">#FFBB86FC</color>

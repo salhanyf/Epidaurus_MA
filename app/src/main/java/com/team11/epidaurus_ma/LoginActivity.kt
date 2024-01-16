@@ -1,11 +1,12 @@
 package com.team11.epidaurus_ma
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
@@ -17,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
+
 
 class LoginActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
@@ -44,7 +46,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         ){
             install(Auth)
         }
-        val signInBtn = findViewById<Button>(R.id.createAccountButton)
+
+        val signInBtn = findViewById<Button>(R.id.SignInButton)
         signInBtn.setOnClickListener{
             val emailET = findViewById<EditText>(R.id.emailSignIn)
             val pswET = findViewById<EditText>(R.id.passwordSignIn)
@@ -79,5 +82,4 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             }
         }
     }
-
 }
