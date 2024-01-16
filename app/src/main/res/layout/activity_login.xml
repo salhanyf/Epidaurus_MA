@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,64 +19,65 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/signupText"
+            android:id="@+id/signInText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="24sp"
+            android:text="@string/sign_in"
+            android:textSize="36sp"
             android:fontFamily="monospace"
             android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="@string/sign_in" />
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/emailSignIn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/baseline_alternate_email_24"
             android:drawablePadding="10dp"
             android:hint="@string/email"
             android:autofillHints=""
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/black" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/passwordSignIn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/card_view_boarder"
             android:drawableStart="@drawable/login_activity_lock_open"
             android:drawablePadding="10dp"
             android:hint="@string/password_sign_in"
             android:autofillHints=""
             android:inputType="textPassword"
-            android:textColorHint="@color/black" />
+            tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/createAccountButton"
+            android:id="@+id/SignInButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="100dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/button_background_color"
-            android:textSize="14sp"
-            android:textAlignment="gravity"
-            android:textColor="@color/button_text_color"
             android:text="@string/sign_in"
-            app:cornerRadius="20dp" />
+            android:textSize="16sp"
+            android:textColor="@color/button_text_color"
+            app:cornerRadius="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,22 +88,22 @@
                 android:id="@+id/SignUpText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/first_time"
                 android:textSize="14sp"
                 android:fontFamily="monospace"
                 android:textStyle="bold"
-                android:text="@string/first_time" />
+                android:textColor="@color/black" />
             <Button
                 android:id="@+id/signUpRedirect"
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/sign_up"
                 android:textSize="14sp"
                 android:textStyle="italic"
                 android:textColor="@color/button_background_color"
-                android:text="@string/sign_up" />
+                style="?android:attr/borderlessButtonStyle"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
