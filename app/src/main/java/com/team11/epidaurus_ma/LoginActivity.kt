@@ -2,6 +2,7 @@ package com.team11.epidaurus_ma
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
@@ -65,6 +66,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     }
 
     suspend fun signIn(supabase: SupabaseClient, emailStr:String?, pswStr:String?){
+
         supabase.auth.signInWith(Email){
             if (emailStr != null) {
                 email = emailStr
@@ -75,7 +77,14 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
         supabase.auth.sessionStatus.collect{
             when(it){
-                is SessionStatus.Authenticated -> Toast.makeText(this, "Sign in success", Toast.LENGTH_SHORT).show()
+                is SessionStatus.Authenticated -> {
+                    Toast.makeText(this, "Sign in success", Toast.LENGTH_SHORT).show()
+                    val metadata = supabase.auth.retrieveUserForCurrentSession()?.userMetadata
+                    val homePageIntent = Intent(this, HomePageActivity::class.java)
+                    homePageIntent.putExtra("nurseMetadata", metadata.toString())
+                    startActivity(homePageIntent)
+
+                }
                 SessionStatus.LoadingFromStorage -> Toast.makeText(this, "Loading from Storage", Toast.LENGTH_SHORT).show()
                 SessionStatus.NetworkError -> Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show()
                 SessionStatus.NotAuthenticated -> Toast.makeText(this, "Sign in failure", Toast.LENGTH_SHORT).show()
