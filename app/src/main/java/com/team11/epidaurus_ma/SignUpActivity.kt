@@ -39,10 +39,10 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope {
         // Dropdown menu for departments
         setupSpinner(findViewById(R.id.departmentIdSignup), R.array.department_array, "Select Department") { selected, position ->
             departmentId = when (selected) {
-                "Cardiology" -> "1"
-                "Neurology" -> "2"
-                "Gastroenterology" -> "3"
-                "Pulmonology" -> "4"
+                "Cardiology" -> "Cardiology"
+                "Neurology" -> "Neurology"
+                "Gastroenterology" -> "Gastroenterology"
+                "Pulmonology" -> "Pulmonology"
                 else -> "0"
             }
         }
