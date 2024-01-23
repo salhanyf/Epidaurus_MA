@@ -38,9 +38,6 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
         ) {
             install(Postgrest)
-            defaultSerializer = KotlinXSerializer(Json{
-                ignoreUnknownKeys = true
-            })
         }
 
         /*if (intent.hasExtra("nurseMetadata")) {

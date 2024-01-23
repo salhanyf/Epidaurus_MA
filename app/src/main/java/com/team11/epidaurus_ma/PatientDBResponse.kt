@@ -8,12 +8,12 @@ data class PatientDBResponse(
     val name:String = "",
     val department:String = "",
     val floor:String = "",
-    val braceletId:Int = 0,
-    val admittanceDate:String = "",
-    val estimatedStay:Int = 0,
-    val dateOfBirth:String = "",
+    val bracelet_id:Int = 0,
+    val admittance_date:String = "",
+    val estimated_stay:Int = 0,
+    val date_of_birth:String = "",
     val symptoms:String = "",
-    val medicalHistory:String = "",
-    val medicalDiagnosis:String = "",
-    val roomNumber:String = ""
+    val medical_history:String = "",
+    val medical_diagnosis:String = "",
+    val room_number:String = ""
 )
