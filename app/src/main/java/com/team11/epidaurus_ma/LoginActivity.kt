@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
         val supabase = createSupabaseClient(
             "https://faafgdjvgcpjbchmbmhg.supabase.co",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
         ){
             install(Auth)
         }
@@ -82,12 +82,22 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     val metadata = supabase.auth.retrieveUserForCurrentSession()?.userMetadata
                     val homePageIntent = Intent(this, HomePageActivity::class.java)
                     homePageIntent.putExtra("nurseMetadata", metadata.toString())
+                    supabase.close()
                     startActivity(homePageIntent)
 
                 }
-                SessionStatus.LoadingFromStorage -> Toast.makeText(this, "Loading from Storage", Toast.LENGTH_SHORT).show()
-                SessionStatus.NetworkError -> Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show()
-                SessionStatus.NotAuthenticated -> Toast.makeText(this, "Sign in failure", Toast.LENGTH_SHORT).show()
+                SessionStatus.LoadingFromStorage -> {
+                    Toast.makeText(this, "Loading from Storage", Toast.LENGTH_SHORT).show()
+                    supabase.close()
+                }
+                SessionStatus.NetworkError -> {
+                    Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show()
+                    supabase.close()
+                }
+                SessionStatus.NotAuthenticated -> {
+                    Toast.makeText(this, "Sign in failure", Toast.LENGTH_SHORT).show()
+                    supabase.close()
+                }
             }
         }
     }

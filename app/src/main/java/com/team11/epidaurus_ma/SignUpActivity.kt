@@ -143,8 +143,10 @@ class SignUpActivity : AppCompatActivity(), CoroutineScope {
         }
         if (user == null){
             Toast.makeText(this, "Registration success", Toast.LENGTH_SHORT).show()
+            supabase.close()
         }else{
             Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+            supabase.close()
         }
     }
 }
