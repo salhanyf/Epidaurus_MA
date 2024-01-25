@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
@@ -32,7 +34,8 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_list)
-        //var data: List<PatientDBResponse>
+        var data: List<PatientDBResponse>? = null
+        var metadataJSON: JSONObject? = null
         val supabase = createSupabaseClient(
             "https://faafgdjvgcpjbchmbmhg.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
@@ -40,19 +43,30 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
             install(Postgrest)
         }
 
-        /*if (intent.hasExtra("nurseMetadata")) {
+        if (intent.hasExtra("nurseMetadata")) {
             val nurseMetadataString = intent.getStringExtra("nurseMetadata")
-            val metadataJson = JSONObject(nurseMetadataString.toString())
-        }*/
+            metadataJSON = JSONObject(nurseMetadataString.toString())
+        }
         launch{
-            getRows(supabase)
+            data = getRows(supabase, metadataJSON)
+            val patientList = mutableListOf<PatientDBResponse>()
+            data?.forEach { patientList.add(it) }
+            val recyclerView = findViewById<RecyclerView>(R.id.patientListRecyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(this@PatientListActivity)
+            recyclerView.adapter = PatientAdapter(patientList)
         }
 
 
     }
 
-    private suspend fun getRows(supabase: SupabaseClient){
-        val response = supabase.from("Patients").select().decodeList<PatientDBResponse>()
-        Log.e("Supabase", response.toString())
+    private suspend fun getRows(supabase: SupabaseClient, metadata:JSONObject?): List<PatientDBResponse>? {
+        val response = supabase.from("Patients").select(){
+            filter {
+                eq("department", metadata?.get("Department ID").toString())
+                eq("floor", metadata?.get("Floor ID").toString())
+            }
+        }.decodeList<PatientDBResponse>()
+        supabase.close()
+        return response
     }
 }

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Epidaurus_MA">
         <activity
+            android:name=".PatientDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".PatientListActivity"
             android:exported="false" />
         <activity
