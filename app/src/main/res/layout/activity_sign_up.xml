@@ -40,7 +40,7 @@
             android:layout_marginRight="30dp"
             android:autofillHints=""
             android:background="@drawable/card_view_boarder"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:drawableStart="@drawable/sharp_account_circle_24"
             android:drawablePadding="10dp"
             android:hint="@string/username"

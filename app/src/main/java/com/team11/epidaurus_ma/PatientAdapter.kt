@@ -20,6 +20,7 @@ class PatientAdapter (val itemList: List<PatientDBResponse>):RecyclerView.Adapte
                     val context = itemView.context
                     //We can access the clicked item using itemList[position]
                     val patientDetailsIntent = Intent(context, PatientDetailsActivity::class.java)
+                    patientDetailsIntent.putExtra("id", itemList[position].id)
                     patientDetailsIntent.putExtra("name", itemList[position].name)
                     patientDetailsIntent.putExtra("dob", itemList[position].date_of_birth)
                     patientDetailsIntent.putExtra("roomNumber", itemList[position].room_number)
