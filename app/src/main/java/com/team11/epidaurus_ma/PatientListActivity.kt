@@ -2,24 +2,16 @@ package com.team11.epidaurus_ma
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
-import io.github.jan.supabase.postgrest.result.PostgrestResult
-import io.github.jan.supabase.serializer.KotlinXSerializer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
 import org.json.JSONObject
 import kotlin.coroutines.CoroutineContext
 
@@ -56,8 +48,6 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
             recyclerView.layoutManager = LinearLayoutManager(this@PatientListActivity)
             recyclerView.adapter = PatientAdapter(patientList)
         }
-
-
     }
 
     private suspend fun getRows(supabase: SupabaseClient, metadata:JSONObject?): List<PatientDBResponse>? {

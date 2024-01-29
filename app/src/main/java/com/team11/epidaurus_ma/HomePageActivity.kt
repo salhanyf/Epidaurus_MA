@@ -25,12 +25,9 @@ class HomePageActivity : AppCompatActivity() {
             patientListIntent.putExtra("nurseMetadata", nurseMetadata)
             startActivity(patientListIntent)
         }
-
-
-
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_bar, menu)
+        menuInflater.inflate(R.menu.menu_dashboard, menu)
         return true
     }
 }
