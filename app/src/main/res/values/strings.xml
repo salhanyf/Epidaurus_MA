@@ -18,6 +18,11 @@
     <string name="first_time">First time?</string>
     <string name="select_department">Select department</string>
     <string name="select_floor">Select floor</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_pass">Invalid password</string>
+    <string name="invalid_email_pass">Invalid email or password</string>
+    <string name="invalid_login_credentials_please_try_again">Invalid login credentials. Please try again.</string>
+    <string name="something_went_wrong">Something went wrong!</string>
 
     <!-- Departments for Sign Up activity -->
     <string-array name="department_array">

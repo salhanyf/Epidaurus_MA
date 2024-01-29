@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/card_view_boarder"
+            android:background="@drawable/outlined_box_green"
             android:drawableStart="@drawable/baseline_alternate_email_24"
             android:drawablePadding="10dp"
             android:hint="@string/email"
@@ -57,12 +57,31 @@
             android:layout_gravity="center"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/card_view_boarder"
+            android:background="@drawable/outlined_box_green"
             android:drawableStart="@drawable/login_activity_lock_open"
             android:drawablePadding="10dp"
             android:hint="@string/password_sign_in"
             android:autofillHints=""
             android:inputType="textPassword"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:paddingTop="15dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="18dp"
+            android:background="@drawable/outlined_box_red"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="@color/error_red"
+            android:textAlignment="center"
+            android:visibility="gone"
             tools:ignore="TextContrastCheck" />
 
         <Button
