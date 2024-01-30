@@ -1,91 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_green"
     tools:context=".PatientDetailsActivity">
 
-    <TextView
-        android:id="@+id/patientDetails_nameTV"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/topToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <TextView
-        android:id="@+id/patientDetails_dobTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientDetails_nameTV"
-        app:layout_constraintVertical_bias="0.033" />
-
-    <TextView
-        android:id="@+id/patientDetails_roomNumTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientDetails_dobTV"
-        app:layout_constraintVertical_bias="0.038" />
-
-    <TextView
-        android:id="@+id/patientDetails_symptomsTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <TextView
-        android:id="@+id/patientDetails_medicHistTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/patientDetails_medicDiagTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toEndOf="@+id/patientDetails_dobTV"
-        app:layout_constraintTop_toBottomOf="@+id/patientDetails_symptomsTV"
-        app:layout_constraintVertical_bias="0.489" />
-
-    <TextView
-        android:id="@+id/patientDetails_medicDiagTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toEndOf="@+id/patientDetails_roomNumTV"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141" />
-
-    <Button
-        android:id="@+id/notesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/outlined_circle_green"
+            android:backgroundTint="@color/dark_green"
+            android:padding="16dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/PatientDetailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Patient's Information"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topToolbar" />
+
+    <LinearLayout
+        android:id="@+id/infoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical"
+        android:background="@drawable/outline_box_green_white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientDetailsTextView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/NameTextView"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/label_name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+            <TextView
+                android:id="@+id/patientDetails_nameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/place_holder_name"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/DOBTextView"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/label_date_of_birth"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+            <TextView
+                android:id="@+id/patientDetails_dobTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/place_holder_date_of_birth"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/DepartmentTextView"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/label_department"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/patientDetails_departmentTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/place_holder_department"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/RoomTextView"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/label_room_number"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+            <TextView
+                android:id="@+id/patientDetails_roomNumTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/place_holder_room_number"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
+                tools:ignore="TextSizeCheck" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detailsCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/buttonsCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoCard"
+        app:layout_constraintVertical_bias="0.0">
+        <TextView
+            android:id="@+id/symptomsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/label_symptoms"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/patientDetails_symptomsTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/place_holder_symptoms"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/medicHistTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/label_medical_history"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/patientDetails_medicHistTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/place_holder_medical_history"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/medicDiagTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/label_medical_diagnostic"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
+        <TextView
+            android:id="@+id/patientDetails_medicDiagTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/place_holder_diagnostic"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="TextSizeCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            <Button
+                android:id="@+id/vitalsButton"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/button_background_color"
+                android:text="Vitals"
+                android:textColor="@color/button_text_color"
+                android:textSize="16sp"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/notesButton"
+                app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/notesButton"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/button_background_color"
+                android:text="Notes"
+                android:textColor="@color/button_text_color"
+                android:textSize="16sp"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vitalsButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

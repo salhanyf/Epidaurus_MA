@@ -2,6 +2,7 @@ package com.team11.epidaurus_ma
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.jan.supabase.SupabaseClient
@@ -27,6 +28,11 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_list)
+
+        val backButton = findViewById<ImageView>(R.id.backButton)
+        backButton.setOnClickListener {
+            finish()
+        }
         var data: List<PatientDBResponse>? = null
         var metadataJSON: JSONObject? = null
         val supabase = createSupabaseClient(

@@ -4,18 +4,21 @@ package com.team11.epidaurus_ma
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.Button
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.view.ContextThemeWrapper
 
 class HomePageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
-        val toolbar: Toolbar = findViewById(R.id.app_toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = null
+
+        val menuButton = findViewById<ImageView>(R.id.dashboardMenu)
+        menuButton.setOnClickListener {
+            showPopupMenu(menuButton)
+        }
 
         //Logic for accessing the patient list activity
         val patientsBtn = findViewById<Button>(R.id.ListOfPatientsBtn)
@@ -26,8 +29,29 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(patientListIntent)
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_dashboard, menu)
-        return true
+
+    private fun showPopupMenu(anchor: ImageView) {
+        val wrapper = ContextThemeWrapper(this, R.style.PopupMenuStyle)
+        val popup = PopupMenu(wrapper, anchor)
+        val inflater = popup.menuInflater
+        inflater.inflate(R.menu.menu_dashboard, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.profileBtn -> {
+                    // Handle profile
+                    true
+                }
+                R.id.settingsBtn -> {
+                    // Handle settings
+                    true
+                }
+                R.id.signOutBtn -> {
+                    // Handle sign out
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
     }
 }
