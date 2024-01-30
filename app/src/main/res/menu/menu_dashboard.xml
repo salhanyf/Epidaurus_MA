@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/profileBtn"
+    <item
+        android:id="@+id/profileBtn"
         android:title="@string/profile"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/sharp_account_circle_24"/>
-
+        app:showAsAction="never"/>
     <item
         android:id="@+id/settingsBtn"
         android:title="@string/settings"

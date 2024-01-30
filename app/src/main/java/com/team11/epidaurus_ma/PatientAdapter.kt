@@ -23,6 +23,7 @@ class PatientAdapter (val itemList: List<PatientDBResponse>):RecyclerView.Adapte
                     patientDetailsIntent.putExtra("id", itemList[position].id)
                     patientDetailsIntent.putExtra("name", itemList[position].name)
                     patientDetailsIntent.putExtra("dob", itemList[position].date_of_birth)
+                    patientDetailsIntent.putExtra("department", itemList[position].department)
                     patientDetailsIntent.putExtra("roomNumber", itemList[position].room_number)
                     patientDetailsIntent.putExtra("symptoms", itemList[position].symptoms)
                     patientDetailsIntent.putExtra("medicalHistory", itemList[position].medical_history)
