@@ -8,10 +8,11 @@
     android:background="@color/light_green"
     tools:context=".PatientDetailsActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,22 +21,53 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/outlined_circle_green"
             android:backgroundTint="@color/dark_green"
-            android:padding="16dp"
+            android:clickable="true"
+            android:contentDescription="@string/back_button"
+            android:padding="14dp"
             android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RedundantDescriptionCheck" />
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/epidaurus_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/dashboardMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="14dp"
+            android:clickable="true"
+            android:padding="14dp"
+            android:background="@drawable/outlined_circle_green"
+            android:backgroundTint="@color/dark_green"
+            android:src="@drawable/baseline_menu_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:contentDescription="@string/app_options" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/PatientDetailsTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
-        android:text="Patient's Information"
+        android:text="@string/patient_s_information"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -52,8 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         android:background="@drawable/outline_box_green_white"
         android:elevation="4dp"
@@ -127,7 +159,6 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="TextSizeCheck" />
-
             <TextView
                 android:id="@+id/patientDetails_departmentTV"
                 android:layout_width="match_parent"
@@ -166,16 +197,15 @@
                 android:textSize="16sp"
                 tools:ignore="TextSizeCheck" />
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/detailsCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="40dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/buttonsCard"
@@ -193,14 +223,15 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="monospace"
             tools:ignore="TextSizeCheck" />
         <TextView
             android:id="@+id/patientDetails_symptomsTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="20dp"
             android:text="@string/place_holder_symptoms"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -215,14 +246,15 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="monospace"
             tools:ignore="TextSizeCheck" />
         <TextView
             android:id="@+id/patientDetails_medicHistTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="20dp"
             android:text="@string/place_holder_medical_history"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -237,15 +269,15 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="monospace"
             tools:ignore="TextSizeCheck" />
         <TextView
             android:id="@+id/patientDetails_medicDiagTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
             android:text="@string/place_holder_diagnostic"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -263,33 +295,35 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:layout_height="match_parent">
             <Button
                 android:id="@+id/vitalsButton"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/button_background_color"
-                android:text="Vitals"
+                android:text="@string/vitals"
                 android:textColor="@color/button_text_color"
                 android:textSize="16sp"
                 app:cornerRadius="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/notesButton"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <Button
                 android:id="@+id/notesButton"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/button_background_color"
-                android:text="Notes"
+                android:text="@string/notes"
                 android:textColor="@color/button_text_color"
                 android:textSize="16sp"
                 app:cornerRadius="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vitalsButton" />
-
+                app:layout_constraintStart_toEndOf="@+id/vitalsButton"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

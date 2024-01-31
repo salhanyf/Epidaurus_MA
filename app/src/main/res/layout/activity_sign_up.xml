@@ -28,6 +28,7 @@
             android:textSize="36sp"
             android:fontFamily="monospace"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:textAlignment="center" />
 
         <EditText
@@ -41,7 +42,7 @@
             android:autofillHints=""
             android:background="@drawable/outlined_box_green"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-            android:drawableStart="@drawable/sharp_account_circle_24"
+            android:drawableStart="@drawable/profile_icon_black"
             android:drawablePadding="10dp"
             android:hint="@string/username"
             android:inputType="text"
