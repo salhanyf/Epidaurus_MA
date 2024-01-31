@@ -38,11 +38,11 @@ class HomePageActivity : AppCompatActivity() {
         popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.profileBtn -> {
-                    // Handle profile
+                    // Handle menu_profile
                     true
                 }
                 R.id.settingsBtn -> {
-                    // Handle settings
+                    // Handle menu_settings
                     true
                 }
                 R.id.signOutBtn -> {
