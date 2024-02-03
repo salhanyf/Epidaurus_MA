@@ -45,6 +45,9 @@ class PatientDetailsActivity : AppCompatActivity() {
         medicDiagTV.text = medicalDiagnosis
 
         vitalsBtn.setOnClickListener{
+            val vitalsIntent = Intent(this, VitalsActivity::class.java)
+            vitalsIntent.putExtra("patientId", patientId)
+            startActivity(vitalsIntent)
         }
 
         notesBtn.setOnClickListener {
