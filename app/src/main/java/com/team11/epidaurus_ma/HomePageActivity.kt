@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Button
 import androidx.appcompat.view.ContextThemeWrapper
+import kotlinx.coroutines.processNextEventInCurrentThread
 
 class HomePageActivity : AppCompatActivity() {
 
@@ -39,6 +40,8 @@ class HomePageActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.profileBtn -> {
                     // Handle menu_profile
+                    val profileIntent = Intent (this, ProfileActivity::class.java)
+                    startActivity(profileIntent)
                     true
                 }
                 R.id.settingsBtn -> {

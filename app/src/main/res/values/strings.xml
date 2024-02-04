@@ -93,5 +93,9 @@
     <string name="profile_picture">Profile Picture</string>
     <string name="label_nurse_name">Full Name</string>
     <string name="label_email">Email</string>
+    <string name="Edit">Edit</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Change">Change Avatar</string>
 
 </resources>

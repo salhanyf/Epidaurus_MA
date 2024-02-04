@@ -10,6 +10,8 @@
     <color name="dark_green">#3D6C42</color>
     <color name="accent_grey">#B1B7BD</color>
     <color name="error_red">#8D2018</color>
+    <color name="blue">#03A9F4</color>
+
 
     <color name="button_background_color">@color/dark_green</color>
     <color name="button_background_on_dark">@color/medium_green</color>

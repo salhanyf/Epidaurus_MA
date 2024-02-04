@@ -77,6 +77,21 @@
         app:layout_constraintTop_toBottomOf="@+id/ProfileTextView"
         tools:ignore="ImageContrastCheck" />
 
+    <Button
+        android:id="@+id/changeAvatarButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/brown_1"
+        android:text="@string/Change"
+        android:textColor="@color/button_text_color"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:cornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nurseAvatar"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
         android:id="@+id/infoCard"
         android:layout_width="match_parent"
@@ -86,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nurseAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/changeAvatarButton"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -148,39 +163,56 @@
             android:autofillHints=""
             android:enabled="false"
             tools:ignore="TextContrastCheck"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:backgroundTint="@color/button_background_color"
+                android:text="@string/Cancel"
+                android:textSize="16sp"
+                android:textColor="@color/button_text_color"
+                app:cornerRadius="30dp"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/editButton"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
+                android:visibility="visible"
                 android:backgroundTint="@color/button_background_color"
-                android:text="@string/sign_in"
+                android:text="@string/Edit"
                 android:textSize="16sp"
                 android:textColor="@color/button_text_color"
-                app:cornerRadius="30dp" />
+                app:cornerRadius="30dp"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
-                android:id="@+id/SignInButton"
-                android:layout_width="match_parent"
+                android:id="@+id/saveButton"
+                android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="100dp"
+                android:layout_marginStart="10dp"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:backgroundTint="@color/button_background_color"
-                android:text="@string/sign_in"
+                android:text="@string/Save"
                 android:textSize="16sp"
                 android:textColor="@color/button_text_color"
-                app:cornerRadius="30dp" />
+                app:cornerRadius="30dp"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
     </LinearLayout>
