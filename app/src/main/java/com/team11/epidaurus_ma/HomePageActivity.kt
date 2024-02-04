@@ -13,6 +13,7 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.auth
@@ -23,15 +24,28 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class HomePageActivity : AppCompatActivity(), CoroutineScope {
+
+    private val supabase = createSupabaseClient(
+        "https://faafgdjvgcpjbchmbmhg.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
+    ){
+        install(Auth)
+    }
     private var popupWindow: PopupWindow? = null
     private var job: Job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
     override fun onDestroy() {
-        popupWindow?.dismiss()
         super.onDestroy()
+        popupWindow?.dismiss()
         job.cancel()
+        launch{
+            supabase.close()
+        }
+    }
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,7 +106,7 @@ class HomePageActivity : AppCompatActivity(), CoroutineScope {
                 //TODO: make settings for the app
             }
             R.id.signOutBtn -> { // Logout clicked
-                logoutUser()
+                logoutUser(supabase)
                 Log.d("HomePageActivity", "Sign out menu item clicked")
             }
             else -> {
@@ -101,21 +115,15 @@ class HomePageActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private fun logoutUser() {
-        val supabase = createSupabaseClient(
-            "https://faafgdjvgcpjbchmbmhg.supabase.co",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
-        ){
-            install(Auth)
-        }
-
+    private fun logoutUser(supabase: SupabaseClient) {
         launch {
             try {
                 supabase.auth.signOut()
+                Log.d("HomePageActivity", "Logout successful")
                 redirectToLoginScreen()
             } catch (e: Exception) {
                 Log.e("HomePageActivity", "Error during logout: ${e.message}")
-                // Handle any exceptions, e.g., show an error message
+                Toast.makeText(this@HomePageActivity, "Error occurred!", Toast.LENGTH_SHORT).show()
             }
         }
     }

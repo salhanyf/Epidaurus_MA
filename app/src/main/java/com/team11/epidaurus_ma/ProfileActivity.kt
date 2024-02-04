@@ -187,7 +187,7 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
         floorSpinner: Spinner
     ) {
         val metadata = supabase.auth.retrieveUserForCurrentSession()?.userMetadata.toString()
-        val metadataJSON: JSONObject?
+        var metadataJSON: JSONObject? = null
         metadataJSON = JSONObject(metadata)
 
         originalName = metadataJSON.get("name").toString()

@@ -57,7 +57,10 @@
     <string name="label_btn_floor_view">Floor View</string>
 
     <!-- Patient's List activity & Patient's Details -->
-    <string name="patients_list">My Patients</string>
+    <string name="patients_list">Patients List</string>
+    <string name="Current_nurse">Nurse</string>
+    <string name="Current_dep">Department</string>
+    <string name="Current_floor">, Floor</string>
     <string name="patient_information">Patient\'s Information</string>
     <string name="label_name">Patient\'s Name: </string>
     <string name="place_holder_name">full name place holder</string>
@@ -74,6 +77,7 @@
     <string name="label_medical_diagnostic">Medical Diagnosis:</string>
     <string name="place_holder_diagnostic">Diagnostic place holder</string>
     <string name="label_btn_vitals">Vitals</string>
+
 
     <!-- Notes List activity -->
     <string name="patient_notes">Notes</string>
@@ -99,6 +103,5 @@
     <string name="Save">Save</string>
     <string name="Cancel">Cancel</string>
     <string name="Change">Change Avatar</string>
-
 
 </resources>
