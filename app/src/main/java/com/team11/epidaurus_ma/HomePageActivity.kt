@@ -66,6 +66,15 @@ class HomePageActivity : AppCompatActivity(), CoroutineScope {
             Log.d("HomePageActivity", "Data: $nurseMetadata")
             startActivity(patientListIntent)
         }
+
+        val profileBtn = findViewById<Button>(R.id.ProfileBtn)
+        profileBtn.setOnClickListener {
+            val profileIntent = Intent(this, ProfileActivity::class.java)
+            val nurseMetadata = intent.getStringExtra("nurseMetadata").toString()
+            profileIntent.putExtra("nurseMetadata", nurseMetadata)
+            Log.d("HomePageActivity", "Sending Data to ProfileActivity: $nurseMetadata")
+            startActivity(profileIntent)
+        }
     }
 
     private fun showPopupMenu(anchor: ImageView) {
