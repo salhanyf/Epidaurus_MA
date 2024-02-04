@@ -8,6 +8,7 @@
     android:background="@color/light_green"
     tools:context=".PatientListActivity">
 
+    <!-- Fixed Toolbar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topToolbar"
         android:layout_width="match_parent"
@@ -82,7 +83,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/patientListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
