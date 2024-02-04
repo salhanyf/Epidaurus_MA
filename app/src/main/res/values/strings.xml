@@ -84,5 +84,21 @@
     <string name="label_note">Note:</string>
     <string name="place_holder_observation">Observation place holder</string>
 
+    <!-- Vitals List activity -->
+    <string name="patient_vitals">Vitals</string>
+
+
+    <!-- Account activity -->
+    <string name="nurse_profile">Account</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="label_nurse_name">Full Name</string>
+    <string name="label_nurse_email">Email</string>
+    <string name="label_nurse_department">Department</string>
+    <string name="label_nurse_floor">Floor</string>
+    <string name="Edit">Edit</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Change">Change Avatar</string>
+
 
 </resources>

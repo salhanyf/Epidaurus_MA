@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="black">#FF000000</color>
     <color name="grey">#353535</color>
-    <color name="white">#FFFFFFFF</color>
 
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="light_green">#E7F1E9</color>
     <color name="medium_green">#46915F</color>
     <color name="dark_green">#3D6C42</color>
     <color name="accent_grey">#B1B7BD</color>
     <color name="error_red">#8D2018</color>
+    <color name="blue">#03A9F4</color>
+
 
     <color name="button_background_color">@color/dark_green</color>
     <color name="button_background_on_dark">@color/medium_green</color>

@@ -112,19 +112,6 @@
                 android:text="@string/label_btn_patients"
                 app:cornerRadius="30dp" />
 
-            <Button
-                android:id="@+id/floorViewBtn"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/button_background_color"
-                android:elevation="20dp"
-                android:textSize="16sp"
-                android:textColor="@color/button_text_color"
-                android:text="@string/label_btn_floor_view"
-                app:cornerRadius="30dp" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
