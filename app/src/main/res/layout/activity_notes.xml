@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <ImageView
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
@@ -45,22 +44,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/dashboardMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="14dp"
-            android:clickable="true"
-            android:padding="14dp"
-            android:background="@drawable/outlined_circle_green"
-            android:backgroundTint="@color/dark_green"
-            android:src="@drawable/baseline_menu_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:contentDescription="@string/app_options" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -92,7 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NotesTextView">
-
         <TextView
             android:id="@+id/PatientTextView"
             android:layout_width="wrap_content"
@@ -102,7 +84,6 @@
             android:text="@string/current_patient"
             android:textSize="16sp"
             android:textColor="@color/grey"/>
-
         <TextView
             android:id="@+id/NameTextView"
             android:layout_width="wrap_content"
@@ -129,12 +110,12 @@
         android:id="@+id/fabAddNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/add_note"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/add_note" />
-
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

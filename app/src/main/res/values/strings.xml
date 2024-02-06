@@ -49,6 +49,7 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_sign_out">Sign out</string>
+    <string name="menu_report_issue">Report Issue</string>
 
     <!-- Dashboard activity -->
     <string name="dashboard">Dashboard</string>
@@ -92,15 +93,17 @@
 
     <!-- Notes List activity -->
     <string name="patient_notes">Notes</string>
-    <string name="add_note">Add a note</string>
     <string name="label_author">Author:</string>
     <string name="place_holder_author">Author place holder</string>
     <string name="place_holder_time_date">YYYY/MM/DD HH:MM:SS</string>
     <string name="label_note">Note:</string>
     <string name="place_holder_observation">Observation place holder</string>
     <string name="current_patient">Patient</string>
+    <string name="add_note">Add Note</string>
+    <string name="type_your_note_here">Type your note here…</string>
 
     <!-- Vitals List activity -->
     <string name="patient_vitals">Vitals</string>
+
 
 </resources>

@@ -3,6 +3,5 @@
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="android:popupBackground">@drawable/outline_box_green_white</item> <!-- Custom background -->
         <item name="android:textColor">@color/black</item> <!-- Text color -->
-        <!-- You can add more items to style here -->
     </style>
 </resources>

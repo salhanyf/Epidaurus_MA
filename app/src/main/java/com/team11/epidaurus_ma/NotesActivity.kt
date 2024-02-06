@@ -103,10 +103,11 @@ class NotesActivity : AppCompatActivity(), CoroutineScope {
         supabase: SupabaseClient
     ) {
         val builder = AlertDialog.Builder(this@NotesActivity)
-        builder.setTitle("Add a New Note")
+        builder.setTitle("")
 
-        val input = EditText(this@NotesActivity)
-        builder.setView(input)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_note, null)
+        val input = dialogView.findViewById<EditText>(R.id.noteContentEditText)
+        builder.setView(dialogView)
 
         builder.setPositiveButton("Confirm") { dialog, _ ->
             val observationText = input.text.toString()
@@ -127,11 +128,9 @@ class NotesActivity : AppCompatActivity(), CoroutineScope {
             }
             dialog.dismiss()
         }
-
         builder.setNegativeButton("Cancel") { dialog, _ ->
             dialog.cancel()
         }
-
         builder.show()
     }
 
@@ -147,7 +146,7 @@ class NotesActivity : AppCompatActivity(), CoroutineScope {
         supabase.from("Notes").insert(entry)
     }
 
-    fun getCurrentDateTimeAsString(): String {
+    private fun getCurrentDateTimeAsString(): String {
         val currentDateTime = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         return currentDateTime.format(formatter)
