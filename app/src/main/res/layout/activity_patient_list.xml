@@ -109,11 +109,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
             android:text="@string/Current_nurse"
+            android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/grey" />
+            android:textColor="@color/dark_green" />
     </LinearLayout>
-
-
     <LinearLayout
         android:id="@+id/infoDepFloor"
         android:layout_width="match_parent"
@@ -133,8 +132,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
             android:text="@string/Current_dep"
+            android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/grey"/>
+            android:textColor="@color/dark_green"/>
 
         <TextView
             android:id="@+id/betweenTextView"
@@ -143,8 +143,9 @@
             android:layout_marginEnd="4dp"
             android:fontFamily="monospace"
             android:text="@string/Current_floor"
+            android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/grey"/>
+            android:textColor="@color/dark_green"/>
 
         <TextView
             android:id="@+id/FloorTextView"
@@ -152,8 +153,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
             android:text="@string/Current_floor"
+            android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/grey"/>
+            android:textColor="@color/dark_green"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

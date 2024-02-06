@@ -55,8 +55,8 @@ class PatientListActivity : AppCompatActivity(), CoroutineScope{
         val nameTextView = findViewById<TextView>(R.id.NameTextView)
         val departmentTextView = findViewById<TextView>(R.id.DepTextView)
         val floorTextView = findViewById<TextView>(R.id.FloorTextView)
-        val backButton = findViewById<ImageView>(R.id.backButton)
 
+        val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }

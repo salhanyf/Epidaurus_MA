@@ -47,12 +47,14 @@ class PatientDetailsActivity : AppCompatActivity() {
         vitalsBtn.setOnClickListener{
             val vitalsIntent = Intent(this, VitalsActivity::class.java)
             vitalsIntent.putExtra("patientId", patientId)
+            vitalsIntent.putExtra("name", name)
             startActivity(vitalsIntent)
         }
 
         notesBtn.setOnClickListener {
             val notesIntent = Intent(this, NotesActivity::class.java)
             notesIntent.putExtra("patientId", patientId)
+            notesIntent.putExtra("name", name)
             startActivity(notesIntent)
         }
     }

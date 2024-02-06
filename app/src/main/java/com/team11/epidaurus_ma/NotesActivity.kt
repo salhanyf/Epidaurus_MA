@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,18 +25,36 @@ import java.time.format.DateTimeFormatter
 import kotlin.coroutines.CoroutineContext
 
 class NotesActivity : AppCompatActivity(), CoroutineScope {
-    private var job: Job = Job()
 
+    private val supabase = createSupabaseClient(
+        "https://faafgdjvgcpjbchmbmhg.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
+    ){
+        install(Auth)
+        install(Postgrest)
+    }
+    private var patientIDText: String? = null
+    private var patientNameText: String? = null
+
+    private var job: Job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+        launch{
+            supabase.close()
+        }
     }
+    override fun onResume() {
+        super.onResume()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
+
+        val nameTextView = findViewById<TextView>(R.id.NameTextView)
 
         val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
@@ -46,19 +65,17 @@ class NotesActivity : AppCompatActivity(), CoroutineScope {
         var patientId:Int = 0
         var data:List<NoteEntry>? = null
         var nurseName:String = ""
-        val supabase = createSupabaseClient(
-            "https://faafgdjvgcpjbchmbmhg.supabase.co",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYWZnZGp2Z2NwamJjaG1ibWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM2MTg4NzAsImV4cCI6MjAxOTE5NDg3MH0.aqg8lSD7tQrWhXjfZi7OiRJOEF1ArG-wdRd9KauvZPU",
-        ){
-            install(Postgrest)
-            install(Auth)
-        }
 
         if (intent.hasExtra("patientId")){
             patientId = intent.getIntExtra("patientId",0)
-            Log.e("PatientID", patientId.toString())
+            patientIDText = patientId.toString()
+            Log.d("NotesActivity", "Patient ID: $patientIDText")
         }
-
+        if (intent.hasExtra("name")){
+            patientNameText = intent.getStringExtra("name")
+            nameTextView.text = patientNameText
+            Log.d("NotesActivity", "Patient Name: $patientNameText")
+        }
 
         launch{
             data = getRows(supabase, patientId)
