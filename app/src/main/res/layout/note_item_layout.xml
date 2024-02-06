@@ -13,13 +13,14 @@
         android:orientation="horizontal"
         android:gravity="end"
         android:layout_margin="6dp">
+
         <TextView
             android:id="@+id/time_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/place_holder_time_date"
             android:textColor="@color/grey"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
