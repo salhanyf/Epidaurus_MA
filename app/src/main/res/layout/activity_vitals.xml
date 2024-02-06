@@ -47,6 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Page Title -->
     <TextView
         android:id="@+id/VitalsTextView"
         android:layout_width="match_parent"
@@ -64,8 +65,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topToolbar" />
 
+    <!-- Patient Info -->
     <LinearLayout
-        android:id="@+id/infoName"
+        android:id="@+id/PatientCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -76,7 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VitalsTextView">
-
         <TextView
             android:id="@+id/PatientTextView"
             android:layout_width="wrap_content"
@@ -86,7 +87,6 @@
             android:text="@string/current_patient"
             android:textSize="16sp"
             android:textColor="@color/grey"/>
-
         <TextView
             android:id="@+id/NameTextView"
             android:layout_width="wrap_content"
@@ -98,15 +98,378 @@
             android:textColor="@color/dark_green" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vitals_RecyclerView"
+    <!-- Device Info -->
+    <LinearLayout
+        android:id="@+id/DeviceCard"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/infoName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/PatientCard">
+        <TextView
+            android:id="@+id/deviceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="monospace"
+            android:text="Device #"
+            android:textSize="16sp"
+            android:textColor="@color/grey"/>
+        <TextView
+            android:id="@+id/deviceID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="0000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/dark_green" />
+    </LinearLayout>
 
+    <!-- Time -->
+    <LinearLayout
+        android:id="@+id/timeCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceCard">
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:gravity="start"
+            android:text="Generated as of:"
+            android:textColor="@color/grey"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/time_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:gravity="end"
+            android:text="@string/place_holder_time_date"
+            android:textColor="@color/grey"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <!-- Heart Rate -->
+    <LinearLayout
+        android:id="@+id/HeartCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/outline_box_green_white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeCard"
+        app:layout_constraintBottom_toTopOf="@id/BloodCard">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:padding="14dp">
+            <TextView
+                android:id="@+id/heart_rateTextView"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:text="Heart Rate:"
+                android:textSize="18sp"
+                android:textColor="@color/grey"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/icon_heart" />
+                <TextView
+                    android:id="@+id/heart_rateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="72"
+                    android:textStyle="bold"
+                    android:textSize="28sp"
+                    android:textColor="@color/dark_green"
+                    android:fontFamily="monospace"/>
+                <TextView
+                    android:id="@+id/bpmTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="bpm"
+                    android:textStyle="bold"
+                    android:textSize="28sp"
+                    android:textColor="@color/dark_green"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Blood Oxygen -->
+    <LinearLayout
+        android:id="@+id/BloodCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/outline_box_green_white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HeartCard" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:padding="14dp">
+            <TextView
+                android:id="@+id/blood_oxygenTextView"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:text="Blood Oxygen:"
+                android:textSize="18sp"
+                android:textColor="@color/grey"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"/>
+                <TextView
+                    android:id="@+id/blood_oxygenValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="98"
+                    android:textStyle="bold"
+                    android:textSize="28sp"
+                    android:textColor="@color/dark_green"
+                    android:fontFamily="monospace"/>
+                <TextView
+                    android:id="@+id/percentTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="%"
+                    android:textStyle="bold"
+                    android:textSize="28sp"
+                    android:textColor="@color/dark_green"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Temperature -->
+    <LinearLayout
+        android:id="@+id/TemperatureCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/outline_box_green_white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BloodCard">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:padding="14dp">
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:text="Body Temperature:"
+                android:textSize="18sp"
+                android:textColor="@color/grey"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/icon_temp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/temperature_in_F_Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="98.6"
+                            android:textStyle="bold"
+                            android:textSize="28sp"
+                            android:textColor="@color/dark_green"
+                            android:fontFamily="monospace"/>
+                        <TextView
+                            android:id="@+id/temp_in_F_TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:text="°F"
+                            android:textStyle="bold"
+                            android:textSize="28sp"
+                            android:textColor="@color/dark_green"
+                            android:fontFamily="monospace"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/convertTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/grey"
+                            android:fontFamily="monospace"/>
+                        <TextView
+                            android:id="@+id/temperature_in_C_Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="37"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/grey"
+                            android:fontFamily="monospace"/>
+                        <TextView
+                            android:id="@+id/temp_in_C_TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:text="°C"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/grey"
+                            android:fontFamily="monospace"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lastLayerCard"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TemperatureCard">
+
+        <!-- Fall Detection -->
+        <LinearLayout
+            android:id="@+id/FallDetectionCard"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/outline_box_green_white"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/FallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Fall:"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/FallValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:fontFamily="monospace"
+                android:text="Normal"
+                android:textColor="@color/dark_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Battery -->
+        <LinearLayout
+            android:id="@+id/BatteryCard"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/outline_box_green_white"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/FallDetectionCard"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/BatteryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Battery:"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/BatteryValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:fontFamily="monospace"
+                android:text="%80"
+                android:textColor="@color/dark_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
