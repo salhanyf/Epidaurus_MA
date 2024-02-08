@@ -35,12 +35,13 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         get() = Dispatchers.Main + job
     override fun onDestroy() {
         super.onDestroy()
+        //status = false
         job.cancel()
-        status = false
         launch{
             supabase.close()
         }
     }
+
     override fun onResume() {
         super.onResume()
     }
@@ -50,6 +51,8 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         setContentView(R.layout.activity_vitals)
 
         val nameTextView = findViewById<TextView>(R.id.NameTextView)
+        val time_date = findViewById<TextView>(R.id.time_date)
+        time_date.text = getCurrentDateTimeAsString()
         val fallValueTextView = findViewById<TextView>(R.id.FallValue)
         var patientId:Int = 0
 
@@ -89,7 +92,6 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
                 eq("id", 1)
             }
         }.decodeSingle<CapacitiveTouchResponse>()
-
         return value
     }
 }
