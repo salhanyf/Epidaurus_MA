@@ -64,6 +64,11 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        val backButton = findViewById<ImageView>(R.id.backButton)
+        backButton.setOnClickListener {
+            finish()
+        }
+
         val avatarImage = findViewById<ImageView>(R.id.nurseAvatar)
         val nameEditText = findViewById<EditText>(R.id.NameEditText)
         val departmentSpinner = findViewById<Spinner>(R.id.departmentEditText)
@@ -96,11 +101,6 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
                 "Floor 3" -> "3"
                 else -> "0"
             }
-        }
-
-        val backButton = findViewById<ImageView>(R.id.backButton)
-        backButton.setOnClickListener {
-            finish()
         }
 
         // Load the avatar resource ID from SharedPreferences
