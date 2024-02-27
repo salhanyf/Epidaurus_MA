@@ -13,9 +13,12 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
+import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -52,16 +55,6 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_details)
 
-        val backButton = findViewById<ImageView>(R.id.backButton)
-        backButton.setOnClickListener {
-            finish()
-        }
-
-        val reportIssueBtn = findViewById<ImageView>(R.id.reportIssue)
-        reportIssueBtn.setOnClickListener{
-            showReportingIssuesDialog()
-        }
-
         val patientId = intent.getIntExtra("id",0)
         val name = intent.getStringExtra("name").toString()
         val dob = intent.getStringExtra("dob").toString()
@@ -70,6 +63,17 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
         val symptoms = intent.getStringExtra("symptoms").toString()
         val medicalHistory = intent.getStringExtra("medicalHistory").toString()
         val medicalDiagnosis = intent.getStringExtra("medicalDiagnosis").toString()
+
+        val backButton = findViewById<ImageView>(R.id.backButton)
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        val reportIssueBtn = findViewById<ImageView>(R.id.reportIssue)
+        reportIssueBtn.setOnClickListener{
+            showReportingIssuesDialog(supabase,name)
+        }
+
 
         val nameTV = findViewById<TextView>(R.id.patientDetails_nameTV)
         val dobTV = findViewById<TextView>(R.id.patientDetails_dobTV)
@@ -104,7 +108,7 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private fun showReportingIssuesDialog() {
+    private fun showReportingIssuesDialog(supabase:SupabaseClient, name:String) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_report_issue, null)
         val spinner: Spinner = dialogView.findViewById(R.id.issueEditText)
         val input = dialogView.findViewById<EditText>(R.id.issueContentEditText)
@@ -127,6 +131,12 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
             if (selectedIssue != "Select an issue to report" && selectedIssue != "Other") {
                 Toast.makeText(this, "Issue reported: $selectedIssue", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+                launch{
+                    var nurseEmail = supabase.auth.retrieveUserForCurrentSession().email
+                    var date = getCurrentDateTimeAsString()
+                    val issueEntry = IssueEntry(nurseEmail, date, selectedIssue, name)
+                    supabase.from("Reporting").insert(issueEntry)
+                }
             } else if (selectedIssue == "Other" && observationText.isNotBlank()) {
                 val timeDate = getCurrentDateTimeAsString()
                 Toast.makeText(this, "Issue entered: $observationText", Toast.LENGTH_SHORT).show()
