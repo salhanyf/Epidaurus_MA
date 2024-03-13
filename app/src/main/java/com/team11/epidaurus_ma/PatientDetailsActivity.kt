@@ -112,6 +112,7 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_report_issue, null)
         val spinner: Spinner = dialogView.findViewById(R.id.issueEditText)
         val input = dialogView.findViewById<EditText>(R.id.issueContentEditText)
+        val severity = dialogView.findViewById<EditText>(R.id.severityEditText)
 
         setupSpinner(dialogView, spinner, "Select an issue to report") { selected, _ ->
             selectedIssue = selected
@@ -134,7 +135,7 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
                 launch{
                     var nurseEmail = supabase.auth.retrieveUserForCurrentSession().email
                     var date = getCurrentDateTimeAsString()
-                    val issueEntry = IssueEntry(nurseEmail, date, selectedIssue, name)
+                    val issueEntry = IssueEntry(nurseEmail, date, selectedIssue, name, severity.text.toString())
                     supabase.from("Reporting").insert(issueEntry)
                 }
             } else if (selectedIssue == "Other" && observationText.isNotBlank()) {
