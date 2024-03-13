@@ -15,5 +15,6 @@ data class PatientDBResponse(
     val symptoms:String = "",
     val medical_history:String = "",
     val medical_diagnosis:String = "",
-    val room_number:String = ""
+    val room_number:String = "",
+    val status:String=""
 )

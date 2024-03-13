@@ -48,6 +48,8 @@
         android:drawablePadding="10dp"
         android:spinnerMode="dropdown" />
 
+
+
     <LinearLayout
         android:id="@+id/issueCard"
         android:layout_width="match_parent"
@@ -71,6 +73,14 @@
             android:inputType="textMultiLine"
             android:backgroundTint="@color/white"
             android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/severityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Severity" />
 
     </LinearLayout>
 
