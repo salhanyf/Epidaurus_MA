@@ -40,6 +40,7 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
     private var issueId: String = "0"
     private var selectedIssue: String = "Other"
+    private var selectedSeverity: String = "Low"
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
@@ -73,7 +74,6 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
         reportIssueBtn.setOnClickListener{
             showReportingIssuesDialog(supabase,name)
         }
-
 
         val nameTV = findViewById<TextView>(R.id.patientDetails_nameTV)
         val dobTV = findViewById<TextView>(R.id.patientDetails_dobTV)
@@ -110,12 +110,18 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
 
     private fun showReportingIssuesDialog(supabase:SupabaseClient, name:String) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_report_issue, null)
-        val spinner: Spinner = dialogView.findViewById(R.id.issueEditText)
+        val IssueSpinner: Spinner = dialogView.findViewById(R.id.issueEditText)
+        val SeveritySpinner: Spinner = dialogView.findViewById(R.id.severityEditText)
         val input = dialogView.findViewById<EditText>(R.id.issueContentEditText)
-        val severity = dialogView.findViewById<EditText>(R.id.severityEditText)
 
-        setupSpinner(dialogView, spinner, "Select an issue to report") { selected, _ ->
+        val issues = resources.getStringArray(R.array.issues_array).toList()
+        setupSpinner(dialogView, IssueSpinner, issues,"Select an issue to report") { selected, _ ->
             selectedIssue = selected
+        }
+
+        val severityLevels = resources.getStringArray(R.array.severity_levels_array).toList()
+        setupSpinner(dialogView, SeveritySpinner,severityLevels,"Select severity") { selected, _ ->
+            selectedSeverity = selected
         }
 
         val dialog = AlertDialog.Builder(this)
@@ -124,34 +130,42 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
             .setPositiveButton("Report", null)
             .setCancelable(true)
             .create()
-
         dialog.show()
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val observationText = input.text.toString()
-            if (selectedIssue != "Select an issue to report" && selectedIssue != "Other") {
-                Toast.makeText(this, "Issue reported: $selectedIssue", Toast.LENGTH_SHORT).show()
+            var isValid = true
+
+            if (selectedIssue == "Select an issue to report") {
+                Toast.makeText(this, "Please select an issue to report.", Toast.LENGTH_SHORT).show()
+                isValid = false
+            }
+            if (selectedSeverity == "Select severity") {
+                Toast.makeText(this, "Please select issue severity.", Toast.LENGTH_SHORT).show()
+                isValid = false
+            }
+            if (selectedIssue == "Other" && observationText.isBlank()) {
+                Toast.makeText(this, "Please describe the issue.", Toast.LENGTH_SHORT).show()
+                isValid = false
+            }
+
+            if (isValid) {
+                val issueText = if (selectedIssue == "Other") observationText else selectedIssue
+                Toast.makeText(this, "Issue reported: $selectedIssue with severity $selectedSeverity", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
-                launch{
-                    var nurseEmail = supabase.auth.retrieveUserForCurrentSession().email
-                    var date = getCurrentDateTimeAsString()
-                    val issueEntry = IssueEntry(nurseEmail, date, selectedIssue, name, severity.text.toString())
+
+                launch {
+                    val nurseEmail = supabase.auth.retrieveUserForCurrentSession().email
+                    val date = getCurrentDateTimeAsString()
+                    val issueEntry = IssueEntry(nurseEmail, date, issueText, name, selectedSeverity)
                     supabase.from("Reporting").insert(issueEntry)
                 }
-            } else if (selectedIssue == "Other" && observationText.isNotBlank()) {
-                val timeDate = getCurrentDateTimeAsString()
-                Toast.makeText(this, "Issue entered: $observationText", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            } else {
-                // Prompt user to select a valid issue if they haven't
-                Toast.makeText(this, "Please select an issue to report.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun setupSpinner(dialogView : View, spinner: Spinner, hint: String, onSelect: (String, Int) -> Unit) {
-        val issues = resources.getStringArray(R.array.issues_array).toList()
-        val adapter = AdapterIssues(this, R.layout.dropdown_item, issues, hint)
+    private fun setupSpinner(dialogView: View, spinner: Spinner, options: List<String>, hint: String, onSelect: (String, Int) -> Unit) {
+        val adapter = AdapterIssues(this, R.layout.dropdown_item, options, hint)
         spinner.adapter = adapter
         spinner.dropDownVerticalOffset = 150
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -169,7 +183,6 @@ class PatientDetailsActivity : AppCompatActivity(), CoroutineScope {
                 }
                 onSelect(selected, position)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 adapter.setCurrentSelection(hint)
             }

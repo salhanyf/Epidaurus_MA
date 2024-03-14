@@ -33,7 +33,7 @@
         android:padding="10dp" />
 
     <Spinner
-        android:id="@+id/issueEditText"
+        android:id="@+id/severityEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -48,17 +48,30 @@
         android:drawablePadding="10dp"
         android:spinnerMode="dropdown" />
 
-
+    <Spinner
+        android:id="@+id/issueEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/outlined_box_green"
+        android:popupBackground="@drawable/card_view"
+        android:drawableStart="@drawable/baseline_arrow_forward_24"
+        android:drawablePadding="10dp"
+        android:spinnerMode="dropdown" />
 
     <LinearLayout
         android:id="@+id/issueCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/outline_box_green_white"
-
         android:elevation="4dp">
 
         <EditText
@@ -74,14 +87,5 @@
             android:backgroundTint="@color/white"
             android:autofillHints="" />
 
-        <EditText
-            android:id="@+id/severityEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Severity" />
-
     </LinearLayout>
-
 </LinearLayout>

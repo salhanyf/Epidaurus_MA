@@ -56,6 +56,14 @@
         <item>Other</item>
     </string-array>
 
+    <!-- Severity for reporting issues -->
+    <string-array name="severity_levels_array">
+        <item>Select severity</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
     <!-- Menu bar options -->
     <string name="menu_profile">Profile</string>
     <string name="menu_settings">Settings</string>
