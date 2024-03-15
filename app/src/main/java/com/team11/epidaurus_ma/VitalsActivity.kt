@@ -54,6 +54,10 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         val time_date = findViewById<TextView>(R.id.time_date)
         time_date.text = getCurrentDateTimeAsString()
         val fallValueTextView = findViewById<TextView>(R.id.FallValue)
+        val heartateTV = findViewById<TextView>(R.id.heart_rateValue)
+        val spo2TV = findViewById<TextView>(R.id.blood_oxygenValue)
+        val bodyTempCTV = findViewById<TextView>(R.id.temperature_in_C_Value)
+        val bodyTempFTV = findViewById<TextView>(R.id.temperature_in_F_Value)
         var patientId:Int = 0
 
         val backButton = findViewById<ImageView>(R.id.backButton)
@@ -73,9 +77,12 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         }
         launch {
             while (status) {
-                fallValueTextView.text = supabaseFetch().touched.toString()
-                Log.e("This ain't stoppin","yeah")
-                sleep(2500)
+               val value = supabaseFetch()
+                val fahrenheit = celisusToF(value.bodyTemp)
+                heartateTV.text = value.heartRate.toString()
+                spo2TV.text = value.spO2.toString()
+                bodyTempFTV.text = value.bodyTemp.toString()
+                //bodyTempFTV.text = fahrenheit.toString()
             }
         }
     }
@@ -86,12 +93,14 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         return currentDateTime.format(formatter)
     }
 
-    private suspend fun supabaseFetch():CapacitiveTouchResponse{
-        val value = supabase.from("ESP32CapacitiveTouch").select(){
-            filter {
-                eq("id", 1)
-            }
-        }.decodeSingle<CapacitiveTouchResponse>()
+    private suspend fun supabaseFetch():VitalsResponse{
+        val value = supabase.from("ESP32FallDetection").select(){
+        }.decodeSingle<VitalsResponse>()
         return value
     }
+
+    private fun celisusToF(celsius:Float):Float{
+        return 1.8f*celsius+32f
+    }
+
 }
