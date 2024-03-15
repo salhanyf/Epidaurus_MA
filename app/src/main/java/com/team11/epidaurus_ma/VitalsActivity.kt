@@ -56,7 +56,8 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         val fallValueTextView = findViewById<TextView>(R.id.FallValue)
         val heartateTV = findViewById<TextView>(R.id.heart_rateValue)
         val spo2TV = findViewById<TextView>(R.id.blood_oxygenValue)
-        val bodyTempTV = findViewById<TextView>(R.id.temp_in_C_TextView)
+        val bodyTempCTV = findViewById<TextView>(R.id.temperature_in_C_Value)
+        val bodyTempFTV = findViewById<TextView>(R.id.temperature_in_F_Value)
         var patientId:Int = 0
 
         val backButton = findViewById<ImageView>(R.id.backButton)
@@ -77,9 +78,11 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         launch {
             while (status) {
                val value = supabaseFetch()
+                val fahrenheit = celisusToF(value.bodyTemp)
                 heartateTV.text = value.heartRate.toString()
                 spo2TV.text = value.spO2.toString()
-                bodyTempTV.text = value.bodyTemp.toString()
+                bodyTempFTV.text = value.bodyTemp.toString()
+                //bodyTempFTV.text = fahrenheit.toString()
             }
         }
     }
@@ -95,4 +98,9 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
         }.decodeSingle<VitalsResponse>()
         return value
     }
+
+    private fun celisusToF(celsius:Float):Float{
+        return 1.8f*celsius+32f
+    }
+
 }
