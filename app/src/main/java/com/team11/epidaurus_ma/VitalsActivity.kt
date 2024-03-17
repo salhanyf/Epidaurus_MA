@@ -97,7 +97,7 @@ class VitalsActivity : AppCompatActivity(), CoroutineScope {
                 } catch (e: CancellationException) {
                     Log.d("VitalsActivity", "Coroutine was cancelled")
                 } catch (e: Exception) {
-                    Log.d("VitalsActivity", "Error detected")
+                    Log.e("MyActivity", "Error during network request", e)
                 }
             }
         }
