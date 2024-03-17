@@ -16,6 +16,7 @@ import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.from
+import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -139,6 +140,7 @@ class NotesActivity : AppCompatActivity(), CoroutineScope {
             filter {
                 eq("patient_id", patientId)
             }
+            order(column = "time_date", order = Order.DESCENDING)
         }.decodeList<NoteEntry>()
         return response
     }

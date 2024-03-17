@@ -331,50 +331,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/temperature_in_F_Value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:fontFamily="monospace"
-                            android:textColor="@color/dark_green"
-                            android:textSize="28sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/temp_in_F_TextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="monospace"
-                            android:text="°C"
-                            android:textColor="@color/dark_green"
-                            android:textSize="28sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/convertTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="monospace"
-                            android:textColor="@color/grey"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
                             android:id="@+id/temperature_in_C_Value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:fontFamily="monospace"
-                            android:textColor="@color/grey"
-                            android:textSize="18sp"
+                            android:textColor="@color/dark_green"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -384,8 +347,9 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:fontFamily="monospace"
-                            android:textColor="@color/grey"
-                            android:textSize="18sp"
+                            android:text="°C"
+                            android:textColor="@color/dark_green"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -469,7 +433,7 @@
                 android:fontFamily="monospace"
                 android:text="%80"
                 android:textColor="@color/dark_green"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

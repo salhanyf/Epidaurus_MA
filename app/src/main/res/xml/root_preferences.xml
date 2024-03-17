@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Profile Settings">
+        <Preference
+            app:key="edit_profile"
+            app:title="Edit Profile"
+            app:summary="edit your name and avatar"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/notifications_header">
+        <SwitchPreferenceCompat
+            app:key="enable_notifications"
+            app:title="Enable Notification"
+            app:summary="Allow app to push notifications"/>
+        <Preference
+            app:key="app_notification"
+            app:title="App Notification"
+            app:summary=""/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Security Settings">
+        <Preference
+            app:key="change_password"
+            app:title="Change Password"/>
+        <SwitchPreferenceCompat
+            app:key="enable_2fa"
+            app:title="Enable MFA"
+            app:summary="Enable Multi-factor authentication"/>
+    </PreferenceCategory>
+</PreferenceScreen>
